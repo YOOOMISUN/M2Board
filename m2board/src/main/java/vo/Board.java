@@ -2,12 +2,12 @@ package vo;
 
 public class Board {
 	private int boardNo;
-	private String title;
-	private String writer;
-	private String content;
+	private String boardTitle;
+	private String boardWriter;
+	private String boardContent;
 	private String creatDate;
-	private String read;
-	
+	private String boardRead;
+	private String boardNice;
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -15,23 +15,23 @@ public class Board {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public String getTitle() {
-		return title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getWriter() {
-		return writer;
+	public String getBoardWriter() {
+		return boardWriter;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setBoardWriter(String boardWriter) {
+		this.boardWriter = boardWriter;
 	}
-	public String getContent() {
-		return content;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 	public String getCreatDate() {
 		return creatDate;
@@ -39,27 +39,35 @@ public class Board {
 	public void setCreatDate(String creatDate) {
 		this.creatDate = creatDate;
 	}
-	public String getRead() {
-		return read;
+	public String getBoardRead() {
+		return boardRead;
 	}
-	public void setRead(String read) {
-		this.read = read;
+	public void setBoardRead(String boardRead) {
+		this.boardRead = boardRead;
 	}
-
+	public String getBoardNice() {
+		return boardNice;
+	}
+	public void setBoardNice(String boardNice) {
+		this.boardNice = boardNice;
+	}
+	
 	
 	public Board() {
 		super();
+
 	}
-	public Board(int boardNo, String title, String writer, String content, String creatDate, String read, int nice) {
+	public Board(int boardNo, String boardTitle, String boardWriter, String boardContent, String creatDate,
+			String boardRead, String boardNice) {
 		super();
 		this.boardNo = boardNo;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.boardContent = boardContent;
 		this.creatDate = creatDate;
-		this.read = read;
+		this.boardRead = boardRead;
+		this.boardNice = boardNice;
 	}
-	
 	
 	
 	

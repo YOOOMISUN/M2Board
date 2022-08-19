@@ -14,6 +14,7 @@
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
+				<th>내용</th>
 				<th>작성일</th>
 				<th>조회</th>
 				<th>좋아요</th>
@@ -21,13 +22,13 @@
 		</thead>
 		<tbody>
 		<c:forEach var="b" items="${list}">
-			<td>${b.boardNo}</td>	<!-- b.getBoardNo() -->
-			<td>${b.title}</td>
-			<td>${b.writer}</td>
-		
-			<td>${b.createDate}</td>
-			<td>${b.read}</td>
-			<td>${b.nice}</td>
+			<td>${loginMember.boardNo}</td>	<!-- b.getBoardNo() -->
+			<td>${loginMember.boardTitle}</td>
+			<td>${loginMember.boardWriter}</td>
+			<td>${loginMember.boardContent}</td>
+			<td>${loginMember.creatDate}</td>
+			<td>${loginMember.boardRead}</td>
+			<td>${loginMember.boardNice}</td>
 		</c:forEach>
 		</tbody>
 	</table>

@@ -11,4 +11,5 @@ public interface IMemberService {
 	int removeMember(Member member);
 	
 	int modifyMember(Member member);
+	
 }

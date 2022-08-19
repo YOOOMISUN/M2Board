@@ -51,6 +51,8 @@ public class AddMemberController extends HttpServlet {
 		String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));       
 		String gender = request.getParameter("gender");
+		String addr = request.getParameter("addr");
+		String detailAddr = request.getParameter("detailAddr");
 		String updateDate = request.getParameter("updateDate");
 		String createDate = request.getParameter("createDate");
 		
@@ -60,6 +62,8 @@ public class AddMemberController extends HttpServlet {
 		System.out.println("name : " + name);
 		System.out.println("age : " + age);
 		System.out.println("gender : " + gender);
+		System.out.println("addr : " + addr);
+		System.out.println("detailAddr : " + detailAddr);
 		
 		
 		Member member = new Member();
@@ -68,6 +72,8 @@ public class AddMemberController extends HttpServlet {
 		member.setMemberName(name);
 		member.setMemberAge(age);
 		member.setMemberGender(gender);
+		member.setMemberAddress(addr);
+		member.setMemberDetailAddr(detailAddr);
 		member.setUpdateDate(updateDate);
 		member.setCreateDate(createDate);
 		

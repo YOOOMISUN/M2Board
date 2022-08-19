@@ -30,11 +30,13 @@
 		</table>
 		
 		<br>
+		
+		<a href="boardList">게시판</a>
 		<a href="Logout">로그아웃</a>	
-		<br>
 		<a href="UpdateMember">정보수정</a>	
-		<br>
 		<a href="DeleteMember">회원탈퇴</a>
+		
+		
 	</div>
 </body>
 </html>

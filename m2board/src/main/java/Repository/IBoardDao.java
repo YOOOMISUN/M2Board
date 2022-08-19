@@ -11,4 +11,6 @@ public interface IBoardDao {
 	List<Board> selectBoardListByPage(Connection conn,int rowPerPage, int beginRow) throws Exception;
 	int selectBoardCnt(Connection conn, int rowPerPage) throws Exception;
 	Map<String,Object> selectBoardOne(Connection conn, int boardNo) throws Exception;
+	int insertBoard(Connection conn, Board board) throws Exception;
+	int updateCnt(Connection conn, int boaredNo) throws Exception;
 }

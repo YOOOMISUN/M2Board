@@ -9,8 +9,8 @@
 <body>
 	<form action="DeleteMember" method="post" id="removeForm">
 		<p>비밀번호 :  </p>
-		<input type="hidden" name="id" value="${loginMember.memberId}">
-		<input type="password" name="pw" id="pw">
+		<input type="hidden" name="id" value="${loginMember.memberId}" class="form-control">
+		<input type="password" name="pw" id="pw" class="form-control">
 		<button type="button" id="removebtn">탈퇴하기</button>
 		<p><a href="javascript:history.go(-1)" class="btn btn-danger" title="뒤로">뒤로가기</a></p>
 	</form>

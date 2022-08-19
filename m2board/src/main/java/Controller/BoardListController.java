@@ -19,11 +19,8 @@ public class BoardListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 컨트롤러 역할
 		// 1. 요청 받아 분석
-		int rowPerPage = 10;
+		final int ROW_PER_PAGE = 5;
 		
-		if(request.getParameter("rowPerPage") != null) {
-			rowPerPage = Integer.parseInt(request.getParameter("rowPerPage"));
-		}
 		
 		int currentPage = 1;
 		if(request.getParameter("currentPage") != null) {
@@ -33,11 +30,16 @@ public class BoardListController extends HttpServlet {
 		
 		// 2. 서비스 레이어를 요청(메서드 호출) -> 모델값(자료구조)를 구하기 위함
 		boardService = new BoardService();
-		Map<String,Object> map = boardService.getBoardList(rowPerPage, currentPage);
+		Map<String,Object> map = boardService.getBoardList(ROW_PER_PAGE, currentPage);
 		request.setAttribute("lastPage", map.get("lastPage"));
 		request.setAttribute("list", map.get("list"));
-		request.setAttribute("currentPage", map.get("currentPage"));
+		request.setAttribute("currentPage", currentPage);
 		
+		// 디버깅
+		System.out.println("lastPage >> " + map.get("lastPage"));
+		System.out.println("list >> " +  map.get("list"));
+		System.out.println("currentPage >> " + currentPage);
+
 		
 		// 3. 뷰 포워딩
 		request.getRequestDispatcher("/WEB-INF/view/boardList.jsp").forward(request, response);

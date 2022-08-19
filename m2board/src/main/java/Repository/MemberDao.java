@@ -10,7 +10,7 @@ public class MemberDao implements IMemberDao{
 
 	@Override	// 로그인
 	public Member selectMemberLogin(Connection conn, Member paramMember) throws Exception {
-		String sql = "SELECT member_id,member_pw,member_name,member_age,member_gender,update_date, create_date FROM member WHERE member_id=? AND member_pw=PASSWORD(?)";
+		String sql = "SELECT member_id,member_pw,member_name,member_age,member_gender,member_address,member_detailAddr, update_date, create_date FROM member WHERE member_id=? AND member_pw=PASSWORD(?)";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Member memberLogin = null;
@@ -28,6 +28,8 @@ public class MemberDao implements IMemberDao{
 				memberLogin.setMemberName(rs.getString("member_name"));
 				memberLogin.setMemberAge(rs.getInt("member_age"));
 				memberLogin.setMemberGender(rs.getString("member_gender"));
+				memberLogin.setMemberAddress(rs.getString("member_address"));
+				memberLogin.setMemberDetailAddr(rs.getString("member_detailAddr"));
 				memberLogin.setUpdateDate(rs.getString("update_date"));
 				memberLogin.setCreateDate(rs.getString("create_date"));
 			}
@@ -51,10 +53,10 @@ public class MemberDao implements IMemberDao{
 		return memberLogin;
 	}
 
-	@Override	// 회원추가
+	@Override	// 회원가입
 	public int insertMember(Connection conn, Member member) throws Exception {
 		
-		String sql = "INSERT INTO member (member_id,member_pw,member_name,member_age,member_gender,update_date, create_date ) VALUES (?,PASSWORD(?),?,?,?,NOW(),NOW())";
+		String sql = "INSERT INTO member (member_id,member_pw,member_name,member_age,member_gender,member_address,member_detailAddr, update_date, create_date ) VALUES (?,PASSWORD(?),?,?,?,?,?,NOW(),NOW())";
 		PreparedStatement stmt = null;
 		int row = 0;
 		
@@ -64,6 +66,8 @@ public class MemberDao implements IMemberDao{
 		stmt.setString(3, member.getMemberName());
 		stmt.setInt(4, member.getMemberAge());
 		stmt.setString(5, member.getMemberGender());
+		stmt.setString(6, member.getMemberAddress());
+		stmt.setString(7, member.getMemberDetailAddr());
 		
 		row = stmt.executeUpdate();
 		
@@ -104,7 +108,7 @@ public class MemberDao implements IMemberDao{
 	@Override	// 회원 정보 수정
 	public int updateMember(Connection conn, Member member) throws Exception {
 		int row = 0;
-		String sql = "UPDATE member SET member_name=?, member_age=?, member_gender=?, update_date=NOW() WHERE member_id=? AND member_pw=PASSWORD(?)";
+		String sql = "UPDATE member SET member_name=?, member_age=?, member_gender=?,member_address=?,member_detailAddr=?, update_date=NOW(),create_date=NOW() WHERE member_id=? AND member_pw=PASSWORD(?)";
 		
 		PreparedStatement stmt = null;
 		
@@ -113,14 +117,17 @@ public class MemberDao implements IMemberDao{
 			stmt.setString(1, member.getMemberName());
 			stmt.setInt(2, member.getMemberAge());
 			stmt.setString(3, member.getMemberGender());
-			stmt.setString(4, member.getMemberId());
-			stmt.setString(5, member.getMemberPw());
+			stmt.setString(4, member.getMemberAddress());
+			stmt.setString(5, member.getMemberDetailAddr());
+			stmt.setString(6, member.getMemberId());
+			stmt.setString(7, member.getMemberPw());
 			
 			
 			row = stmt.executeUpdate();
 		} finally {
 			if(stmt!=null) {
 				stmt.close();
+				
 			}
 		}
 

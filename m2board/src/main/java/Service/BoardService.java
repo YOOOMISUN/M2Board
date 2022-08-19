@@ -2,9 +2,7 @@ package Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import Commons.DBUtil;
@@ -29,6 +27,9 @@ public class BoardService implements IBoardService {
 			 conn = new DBUtil().getConnection();
 			 conn.setAutoCommit(false);
 			 
+			 map = boardDao.selectBoardOne(conn, boardNo);
+			 
+			 
 		 } catch (Exception e) {
 			 e.printStackTrace();
 			 try {
@@ -48,8 +49,43 @@ public class BoardService implements IBoardService {
 		 
 		return map;
 	}
+	
+	@Override	// 조회수
+	public int BoardOneCnt(Board board) {
+		
+		Connection conn = null;
+		this.boardDao = new BoardDao();
+		int updateCnt = 0;
+		
+		try {
+			conn = new DBUtil().getConnection();
+			conn.setAutoCommit(false);
+			
+			updateCnt = boardDao.updateCnt(conn, updateCnt);
+			
+			conn.commit();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return updateCnt;
+	}
+	
+	
 
-	@Override	// 리스트ㄴ
+	@Override	// 리스트
 	public Map<String,Object> getBoardList(int rowPerPage, int currentPage) {
 		
 		Map<String,Object> map = new HashMap<>();
@@ -64,10 +100,11 @@ public class BoardService implements IBoardService {
 			 conn.setAutoCommit(false);
 			 
 			 map.put("list", boardDao.selectBoardListByPage(conn, rowPerPage, beginRow));
-
-			 
 			 map.put("lastPage", boardDao.selectBoardCnt(conn, rowPerPage));
-			 
+
+			
+			 // 디버깅
+			 System.out.println("map : " + map);
 			
 		 } catch (Exception e) {
 			 e.printStackTrace();
@@ -87,7 +124,7 @@ public class BoardService implements IBoardService {
 		 
 		 
 		return map;
-	}
+	}	// end getBoardList
 	
 	@Override	// 페이징
 	public int lastaPage(int rowPerPage) {
@@ -121,7 +158,41 @@ public class BoardService implements IBoardService {
 		}
 		
 		return rowPerPage;
-	}
+	}	// end lastaPage	
+
+	@Override
+	public int addBoard(Board board) {
+		
+		Connection conn = null;
+		this.boardDao = new BoardDao();
+		int addBoard = 0;
+		
+		try {
+			conn = new DBUtil().getConnection();
+			conn.setAutoCommit(false);
+			
+			addBoard = boardDao.insertBoard(conn, board);
+			
+			conn.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return addBoard;
+	} 	// end addBoard
+
+
 	
 	
 	

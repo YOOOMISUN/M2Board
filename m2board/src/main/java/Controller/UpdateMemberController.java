@@ -57,7 +57,8 @@ public class UpdateMemberController extends HttpServlet {
 		String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));       
 		String gender = request.getParameter("gender");
-		//String updateDate = request.getParameter("updateDate");
+		String addr = request.getParameter("addr");
+		String detailAddr = request.getParameter("detailAddr");
 		
 		// 디버깅
 		System.out.println("id : " + id);
@@ -65,7 +66,8 @@ public class UpdateMemberController extends HttpServlet {
 		System.out.println("name : " + name);
 		System.out.println("age : " + age);
 		System.out.println("gender : " + gender);
-		//System.out.println("updateDate : " + updateDate);
+		System.out.println("address : " + addr);
+		System.out.println("detailAddr : " + detailAddr);
 		
 		Member member = new Member();
 		member.setMemberId(id);
@@ -73,7 +75,8 @@ public class UpdateMemberController extends HttpServlet {
 		member.setMemberName(name);
 		member.setMemberAge(age);
 		member.setMemberGender(gender);
-		//member.setUpdateDate(updateDate);
+		member.setMemberAddress(addr);
+		member.setMemberDetailAddr(detailAddr);
 		
 		// 디버깅
 		System.out.println("member : " + member.toString());
@@ -89,8 +92,8 @@ public class UpdateMemberController extends HttpServlet {
 			return;
 		} else {
 			System.out.println("수정 성공!");
-			session.removeAttribute("loginMember");
-			session.setAttribute("loginMember", member);
+			session.removeAttribute("loginMember");			// 세션삭제
+			session.setAttribute("loginMember", member);	// 세션 다시 넣기
 			
 			response.sendRedirect(request.getContextPath()+"/index");
 		}

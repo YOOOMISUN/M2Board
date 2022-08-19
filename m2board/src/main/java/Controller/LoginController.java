@@ -75,6 +75,9 @@ public class LoginController extends HttpServlet {
 
 		session.setAttribute("loginMember", member);
 		
+		// 디버깅
+		System.out.println("member >> " + member.toString());
+		
 		System.out.println("로그인 성공");
 		 response.sendRedirect(request.getContextPath()+"/index");
 		
