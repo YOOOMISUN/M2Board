@@ -31,10 +31,10 @@
 		
 		<br>
 		
-		<a href="boardList">게시판</a>
-		<a href="Logout">로그아웃</a>	
-		<a href="UpdateMember">정보수정</a>	
-		<a href="DeleteMember">회원탈퇴</a>
+		<a href="${pageContext.request.contextPath}/after/boardList">게시판</a>
+		<a href="${pageContext.request.contextPath}/after/Logout">로그아웃</a>	
+		<a href="${pageContext.request.contextPath}/after/UpdateMember">정보수정</a>	
+		<a href="${pageContext.request.contextPath}/after/DeleteMember">회원탈퇴</a>
 		
 		
 	</div>

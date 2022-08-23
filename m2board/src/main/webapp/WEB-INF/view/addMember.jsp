@@ -15,7 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<form action="AddMember" method="post" id="addCustomerForm">
+	<form action="${pageContext.request.contextPath}/after/AddMember" method="post" id="addCustomerForm">
 		<table>
 			<tr>
 				<td>Id</td>

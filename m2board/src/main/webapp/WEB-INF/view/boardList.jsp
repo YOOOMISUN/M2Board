@@ -11,7 +11,7 @@
 	<h1>게시판 목록</h1>
 	
 	<div>
-		<a href="${pageContext.request.contextPath}/AddBoard">글쓰기 </a>
+		<a href="${pageContext.request.contextPath}/after/AddBoard">글쓰기 </a>
 	</div>
 	<br>
 	<table>
@@ -31,7 +31,7 @@
 			<td>${b.boardNo}</td>	<!-- b.getBoardNo() -->
 		
 			<td>
-				<a href="${pageContext.request.contextPath}/boardOne?boardNo=${b.boardNo}">
+				<a href="${pageContext.request.contextPath}/after/boardOne?boardNo=${b.boardNo}">
 					${b.boardTitle}
 				</a>
 			</td>
@@ -45,10 +45,10 @@
 	</table>
 	<div>
 		<c:if test="${currentPage > 1}">
-			<a href="${pageContext.request.contextPath}/boardList?currentPage=${currentPage-1}">이전</a>
+			<a href="${pageContext.request.contextPath}/after/boardList?currentPage=${currentPage-1}">이전</a>
 		</c:if>
 		<c:if test="${currentPage < lastPage}">
-			<a href="${pageContext.request.contextPath}/boardList?currentPage=${currentPage+1}">다음</a>
+			<a href="${pageContext.request.contextPath}/after/boardList?currentPage=${currentPage+1}">다음</a>
 		</c:if>
 	</div>
 	

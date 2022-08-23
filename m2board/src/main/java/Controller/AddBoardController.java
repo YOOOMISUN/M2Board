@@ -14,7 +14,7 @@ import Service.IBoardService;
 import vo.Board;
 
 
-@WebServlet("/AddBoard")
+@WebServlet("/after/AddBoard")
 public class AddBoardController extends HttpServlet {
 	private IBoardService boardService;
 	
@@ -28,7 +28,6 @@ public class AddBoardController extends HttpServlet {
 	// addBoardAction
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
@@ -53,7 +52,7 @@ public class AddBoardController extends HttpServlet {
 			return;
 		} else {
 			System.out.println("게시판 게시 성공!");
-			response.sendRedirect(request.getContextPath()+"/boardList");
+			response.sendRedirect(request.getContextPath()+"/after/boardList");
 		}
 		
 		

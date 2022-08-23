@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
 		
 		if(session.getAttribute("loginMember") != null) {	// 로그인 되어있는 상태
 			System.out.println("로그인 되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/index");		// @WebServlet("/index") 인 컨드롤러로..
+			response.sendRedirect(request.getContextPath() + "/after/index");		// @WebServlet("/index") 인 컨드롤러로..
 			return;
 		};
 		
@@ -47,11 +47,10 @@ public class LoginController extends HttpServlet {
 		
 		if(session.getAttribute("loginMember") != null) {	// 로그인 되어있는 상태	
 			System.out.println("로그인 되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/index");		// @WebServlet("/index") 인 컨드롤러로..
+			response.sendRedirect(request.getContextPath() + "/after/index");		// @WebServlet("/index") 인 컨드롤러로..
 			return;
 		};
 		
-		request.setCharacterEncoding("utf-8");
 		String id  = request.getParameter("id");
 		String pw =  request.getParameter("pw");
 		Member paramMember = new Member();
@@ -73,13 +72,13 @@ public class LoginController extends HttpServlet {
 		} 
 		
 
-		session.setAttribute("loginMember", member);
+		request.getSession().setAttribute("loginMember", member);
 		
 		// 디버깅
 		System.out.println("member >> " + member.toString());
 		
 		System.out.println("로그인 성공");
-		 response.sendRedirect(request.getContextPath()+"/index");
+		 response.sendRedirect(request.getContextPath()+"/after/index");
 		
 		}
 		

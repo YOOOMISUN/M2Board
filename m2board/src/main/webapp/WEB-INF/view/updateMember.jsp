@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>회원정보수정</h1>
-	<form action="UpdateMember" method="post" id="updateForm">
+	<form action="${pageContext.request.contextPath}/after/UpdateMember" method="post" id="updateForm">
 	<table border="1">
 		<tr>
 			<td>Id</td>	

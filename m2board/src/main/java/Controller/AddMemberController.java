@@ -8,26 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Service.IMemberService;
 import Service.MemberService;
 import vo.Member;
 
 
-@WebServlet("/AddMember")
+@WebServlet("/after/AddMember")
 public class AddMemberController extends HttpServlet {
 	private IMemberService memberService;
 	
 	// addMemberForm
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("loginMember") != null) {	// 로그인 되어있는 상태
-			System.out.println("로그인 되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/LoginController");		// @WebServlet("/LoginController") 인 컨드롤러로..
-			return;
-		};
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/addMember.jsp");		// 회원가입 폼으로
 		rd.forward(request, response);
@@ -37,15 +30,8 @@ public class AddMemberController extends HttpServlet {
 
 	// addMemberAction
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("loginMember") != null) {	// 로그인 되어있는 상태
-			System.out.println("로그인 되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/LoginController");		// @WebServlet("/LoginController") 인 컨드롤러로..
-			return;
-		};
-		
-		request.setCharacterEncoding("utf-8");
+
+
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");

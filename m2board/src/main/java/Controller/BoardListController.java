@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Service.BoardService;
 import Service.IBoardService;
 
-@WebServlet("/boardList")
+@WebServlet("/after/boardList")
 public class BoardListController extends HttpServlet {
 	private IBoardService boardService;
   

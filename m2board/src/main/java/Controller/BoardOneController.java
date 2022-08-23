@@ -13,7 +13,7 @@ import Service.BoardService;
 import Service.IBoardService;
 
 
-@WebServlet("/BoardOneController")
+@WebServlet("/after/BoardOneController")
 public class BoardOneController extends HttpServlet {
 	private IBoardService boardService;
 

@@ -1,8 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,31 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Service.IMemberService;
 import Service.MemberService;
 import vo.Member;
 
 
-@WebServlet("/UpdateMember")
+@WebServlet("/after/UpdateMember")
 public class UpdateMemberController extends HttpServlet {
 	private IMemberService memberService;
 
 
 	// updateForm
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		
-		// 디버깅
-		System.out.println("session : " + session.getAttribute("id"));
-		
-		if(session.getAttribute("loginMember") == null) {	// 로그인 안되어있는 상태
-			System.out.println("로그인 안되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/LoginController");		// @WebServlet("/LoginController") 인 컨드롤러로..
-			return;
-		};
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/updateMember.jsp");
 		rd.forward(request, response);
 		
@@ -42,15 +29,7 @@ public class UpdateMemberController extends HttpServlet {
 
 	// updateAction
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("loginMember") == null) {	// 로그인 안되어있는 상태
-			System.out.println("로그인 안되어있는 상태");
-			response.sendRedirect(request.getContextPath() + "/LoginController");		// @WebServlet("/LoginController") 인 컨드롤러로..
-			return;
-		};
-		
-		request.setCharacterEncoding("utf-8");
+
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -88,14 +67,14 @@ public class UpdateMemberController extends HttpServlet {
 		
 		if(row == 0) {
 			System.out.println("수정 실패!");
-			response.sendRedirect(request.getContextPath() + "/UpdateMember");
+			response.sendRedirect(request.getContextPath() + "/after/UpdateMember");
 			return;
 		} else {
 			System.out.println("수정 성공!");
-			session.removeAttribute("loginMember");			// 세션삭제
-			session.setAttribute("loginMember", member);	// 세션 다시 넣기
+			request.getSession().removeAttribute("loginMember");			// 세션삭제
+			request.getSession().setAttribute("loginMember", member);	// 세션 다시 넣기
 			
-			response.sendRedirect(request.getContextPath()+"/index");
+			response.sendRedirect(request.getContextPath()+"/after/index");
 		}
 	}
 

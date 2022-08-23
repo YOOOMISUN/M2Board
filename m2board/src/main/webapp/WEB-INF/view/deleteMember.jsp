@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<form action="DeleteMember" method="post" id="removeForm">
+	<form action="${pageContext.request.contextPath}/after/DeleteMember" method="post" id="removeForm">
 		<p>비밀번호 :  </p>
 		<input type="hidden" name="id" value="${loginMember.memberId}" class="form-control">
 		<input type="password" name="pw" id="pw" class="form-control">

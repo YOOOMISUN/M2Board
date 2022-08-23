@@ -15,7 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<form action ="AddBoard" method="post" id="AddBoard">
+	<form action ="${pageContext.request.contextPath}/after/AddBoard" method="post" id="AddBoard">
 		<table border="1">
 			<tr>
 				<td>제목</td>
